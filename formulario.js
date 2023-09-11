@@ -1,26 +1,28 @@
-document.getElementById("Enviar").addEventListener("click", function () {
-  let nombre = document.getElementById("Nombre").value;
-  let apellido = document.getElementById("Apellido").value;
-  let fecha = document.getElementById("Fecha").value;
+let form = document.getElementById("formulario");
 
-  let datos = {
-      nombre: nombre,
-      apellido: apellido,
-      fecha: fecha
-  };
+form.addEventListener("submit", evento =>{
+    evento.preventDefault();
+    let nombre = document.getElementById("nombre").value;
+    let apellido = document.getElementById("apellido").value;
+    let fnac = document.getElementById("fnac").value;
 
-  fetch('https://jsonplaceholder.typicode.com/users', {
-      method: 'POST',
-      body: JSON.stringify(datos),
-      headers: {
-          'Content-Type': 'application/json'
-      }
-  })
-  .then(response => response.json())
-  .then(data => {
-      console.log(data); 
-  })
-  .catch(error => {
-      console.error('Error:', error);
-  });
+    let datos = {
+        nombre: nombre,
+        apellido: apellido,
+        fnac: fnac
+    };
+
+    console.log(datos);
+
+    fetch("https://jsonplaceholder.typicode.com/users", {
+        method: "POST",
+        body: JSON.stringify(datos)
+})
+        .then((response) => response.json())
+        .then(data => {
+          console.log(data); 
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
 });
